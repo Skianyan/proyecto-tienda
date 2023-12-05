@@ -35,9 +35,7 @@
       
                 </div>
 
-                <div class="mt-16">
-                    
-                </div>
+               
 
                 <div class="flex justify-center mt-16 px-0 sm:items-center sm:justify-between">
                    
