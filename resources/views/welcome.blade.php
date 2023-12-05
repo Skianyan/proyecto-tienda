@@ -31,14 +31,10 @@
                 </div>
             @endif
 
-            <div class="max-w-7xl mx-auto p-6 lg:p-8">
-      
-                </div>
-
-               
-
-                <div class="flex justify-center mt-16 px-0 sm:items-center sm:justify-between">
-                   
+                <div class="text-center justify-center align-middle">
+                    <div class="text-white">Bienvenido a la tienda de comics</div>
+                    <div>Haga click aqui para ver nuestro catalogo</div>
+                    <a href="{{ url('product') }}" class="ml-4 font-semibold text-white hover:text-black dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Products</a>
                 </div>
             </div>
         </div>
