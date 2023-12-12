@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap">
 
     
-    <title>Document</title>
+    <title>Products</title>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -94,23 +94,24 @@
 
         @role('admin')
             <div class="d-flex justify-content-end mt-4">
-                <a class="bg-slate-800 text-white p-4 rounded-lg" href="{{ route('product.create') }}">Create New Product</a>
+                <a class="bg-slate-800 text-white p-4 rounded-lg ml-16" href="{{ route('product.create') }}">Create New Product</a>
             </div>
         @endrole
 
-        <div class="grid grid-cols-2 gap-4 items-center">
+        <div class="grid grid-cols-2 items-center mx-10 ">
             @foreach ($products as $product)
                 <div class="col-md-4 my-4 ">
                     <div class="card text-black ">
-                        <div class="flex flex-col card-body p-4 hover:shadow-md  ">
+                        <div class="flex flex-col card-body p-4 hover:shadow-md border-blue-950 border-2 ">
 
                             <img class="w-52 self-center " src="{{ asset('images/' . $product->image) }}" />
                             <h5 class=" text-2xl font-bold">{{ $product->name }}</h5>
                             <p class="card-text">Qty: {{ $product->qty }}</p>
                             <p class="card-text">Price: {{ $product->price }}</p>
                             <p class="card-text">{{ $product->description }}</p>
+                            @auth
                             <a href="{{route('product.addToCart',['id' => $product->id]) }}" class="bg-slate-700 p-2 rounded-lg w-32 self-center" role="button">Add to Cart</a>
-
+                            @endauth
                             @role('admin')
                                 <a href="{{ route('product.edit', ['product' => $product]) }}" class="btn btn-primary mt-2">Edit</a>
                                 <form method="post" action="{{ route('product.destroy', ['product' => $product]) }}">
