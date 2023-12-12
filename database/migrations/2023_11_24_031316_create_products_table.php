@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('qty');
             $table->decimal('price');
             $table->text('description');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

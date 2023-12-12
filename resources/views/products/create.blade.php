@@ -28,9 +28,8 @@
         </ul>
         @endif
     </div>
-    <form class="relative space-y-2  sm:flex sm:flex-col sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center  bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white"" method="post" action="{{route('product.store')}}">
+    <form class="relative space-y-2  sm:flex sm:flex-col sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center  bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white" method="post" action="{{route('product.store')}}" enctype="multipart/form-data">
         @csrf
-        @method('post')
         <div class="sm:flex sm:flex-col">
             <label class="text-white" for="Name">Name</label>
             <input class="p-2" type="text" name="name" placeholder="Name">
@@ -46,6 +45,10 @@
         <div class="sm:flex sm:flex-col">
             <label class="text-white" for="Description">Description</label>
             <input class="p-2" type="text" name="description" placeholder="Description">
+        </div>
+        <div class="sm:flex sm:flex-col">
+            <label class="text-white" for="image" >Image:</label>
+            <input class="p-2" type="file" name="image" accept="image/png, image/jpeg, image/jpg, image/svg" required>
         </div>
             <input class="bg-slate-600 text-white p-4 rounded-lg" type="submit" value="Save Product">
     </form>

@@ -23,7 +23,9 @@
             background-size: 100% 100%;
             animation: gradientAnimation 14s ease infinite;
             color: #fff;
-            background-image: url('https://i.gifer.com/DbI.gif');
+            background-image: url('https://i.redd.it/xqrg0y9cjhd51.jpg');
+            background-size: cover;
+            background-repeat: no-repeat
             
         }
 
@@ -64,9 +66,15 @@
     
     
     @if (Route::has('login'))
-    <div class="sm:top-0 sm:right-0 p-6 text-right z-10 bg-dark text-white">
+    <div class="sm:top-0 sm:right-0 p-6 text-right z-10 bg-dark">
         @auth
-            <a href="{{ url('/dashboard') }}" class=" font-semibold text-black hover:text-black dark:text-gray-400 dark:hover:text-blue-100 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+        <div class="flex text-black gap-10 items-center">
+            <a href="{{ url('/dashboard') }}" class="text-white bg-slate-600 p-2 rounded-lg font-semibold focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+            <a href="{{ url('/shoppingcart') }}">
+                <i class="text-white bg-slate-600 p-2 rounded-lg font-semibold focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500" aria-hidden="true">Shopping Cart</i>
+                <span class="">  </span>
+            </a>
+        </div>
         @else
             <a href="{{ route('login') }}" class="text-xl font-semibold text-black hover:text-white dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
 
@@ -84,30 +92,33 @@
             </div>
         @endif
 
-        @auth
-            <div class="d-flex justify-content-end">
+        @role('admin')
+            <div class="d-flex justify-content-end mt-4">
                 <a class="bg-slate-800 text-white p-4 rounded-lg" href="{{ route('product.create') }}">Create New Product</a>
             </div>
-        @endauth
+        @endrole
 
-        <div class="row">
+        <div class="grid grid-cols-2 gap-4 items-center">
             @foreach ($products as $product)
-                <div class="col-md-4 mb-4 ">
+                <div class="col-md-4 my-4 ">
                     <div class="card text-black ">
-                        <div class="card-body p-4 hover:shadow-md">
+                        <div class="flex flex-col card-body p-4 hover:shadow-md  ">
+
+                            <img class="w-52 self-center " src="{{ asset('images/' . $product->image) }}" />
                             <h5 class=" text-2xl font-bold">{{ $product->name }}</h5>
                             <p class="card-text">Qty: {{ $product->qty }}</p>
                             <p class="card-text">Price: {{ $product->price }}</p>
                             <p class="card-text">{{ $product->description }}</p>
+                            <a href="{{route('product.addToCart',['id' => $product->id]) }}" class="bg-slate-700 p-2 rounded-lg w-32 self-center" role="button">Add to Cart</a>
 
-                            @auth
-                                <a href="{{ route('product.edit', ['product' => $product]) }}" class="btn btn-primary">Edit</a>
+                            @role('admin')
+                                <a href="{{ route('product.edit', ['product' => $product]) }}" class="btn btn-primary mt-2">Edit</a>
                                 <form method="post" action="{{ route('product.destroy', ['product' => $product]) }}">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger">Delete</button>
                                 </form>
-                            @endauth
+                            @endrole
                         </div>
                     </div>
                 </div>
