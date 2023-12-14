@@ -8,6 +8,7 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap">
 
+    
     <title>Products</title>
     <style>
         body {
@@ -121,33 +122,34 @@
         @endif
 
         @role('admin')
-        <div class="d-flex justify-content-end mt-4">
-            <a class="bg-slate-800 text-white p-4 rounded-lg ml-16  hover:bg-[#6351f0] " href="{{ route('product.create') }}">Create New Product</a>
-        </div>
+            <div class="d-flex justify-content-end mt-4">
+                <a class="bg-slate-800 text-white p-4 rounded-lg ml-16" href="{{ route('product.create') }}">Create New Product</a>
+            </div>
         @endrole
 
-        <div class="grid items-center mx-10 mt-6">
+        <div class="grid grid-cols-2 items-center mx-10 ">
             @foreach ($products as $product)
-            <div class="my-4">
-                <div class="card text-black">
-                    <div class="flex flex-col card-body p-4 hover:shadow-md border-blue-950 border-2">
+                <div class="col-md-4 my-4 ">
+                    <div class="card text-black ">
+                        <div class="flex flex-col card-body p-4 hover:shadow-md border-blue-950 border-2 ">
 
-                        <img class="w-99 h-52 self-center" src="{{ asset('images/' . $product->image) }}" />
-                        <h5 class="text-2xl font-bold">{{ $product->name }}</h5>
-                        <p class="card-text">Qty: {{ $product->qty }}</p>
-                        <p class="card-text">Price: {{ $product->price }}</p>
-                        <p class="card-text">{{ $product->description }}</p>
-                        @auth
-                        <a href="{{route('product.addToCart',['id' => $product->id]) }}" class="bg-[#aa62e1] p-2 rounded-lg w-32 self-center hover:bg-[#369fa3]" role="button">Add to Cart</a>
-                        @endauth
-                        @role('admin')
-                        <a href="{{ route('product.edit', ['product' => $product]) }}" class="btn btn-primary mt-2 hover:text-[#e9ff5b]">Edit</a>
-                        <form method="post" action="{{ route('product.destroy', ['product' => $product]) }}">
-                            @csrf
-                            @method('delete')
-                            <button type="submit" class="btn btn-danger hover:text-[#fa5d5d]">Delete</button>
-                        </form>
-                        @endrole
+                            <img class="w-52 self-center " src="{{ asset('images/' . $product->image) }}" />
+                            <h5 class=" text-2xl font-bold">{{ $product->name }}</h5>
+                            <p class="card-text">Qty: {{ $product->qty }}</p>
+                            <p class="card-text">Price: {{ $product->price }}</p>
+                            <p class="card-text">{{ $product->description }}</p>
+                            @auth
+                            <a href="{{route('product.addToCart',['id' => $product->id]) }}" class="bg-slate-700 p-2 rounded-lg w-32 self-center" role="button">Add to Cart</a>
+                            @endauth
+                            @role('admin')
+                                <a href="{{ route('product.edit', ['product' => $product]) }}" class="btn btn-primary mt-2">Edit</a>
+                                <form method="post" action="{{ route('product.destroy', ['product' => $product]) }}">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            @endrole
+                        </div>
                     </div>
                 </div>
             </div>
