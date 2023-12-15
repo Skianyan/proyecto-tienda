@@ -96,11 +96,14 @@
     @if (Route::has('login'))
     <div class="sm:top-0 sm:right-0 p-6 text-right z-10 bg-dark bg-black w-full">
         @auth
-        <div class="flex text-black gap-4 items-end justify-end">
-            <a href="{{ url('/dashboard') }}" class="text-white rounded-lg font-semibold focus:outline focus:outline-2 focus:rounded-sm  hover:text-[#8558ff]  ">Dashboard</a>
+        <div class="flex justify-between text-black gap-4 mx-24">
+            <a href="{{ url('/dashboard') }}" class="text-white rounded-lg font-semibold focus:outline focus:outline-2 focus:rounded-sm  hover:text-[#8558ff]  ">
+                Dashboard
+            </a>
             <a href="{{ url('/shoppingcart') }}">
-                <i class="text-white rounded-lg font-semibold focus:outline focus:outline-2 focus:rounded-sm  hover:text-[#8558ff]" aria-hidden="true">Shopping Cart</i>
-                <span class=""> </span>
+                <i class="text-white rounded-lg font-semibold focus:outline focus:outline-2 focus:rounded-sm  hover:text-[#8558ff]" aria-hidden="true">
+                    Shopping Cart
+                </i>
             </a>
         </div>
         @else
