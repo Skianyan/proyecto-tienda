@@ -115,7 +115,7 @@
 
     <div class="container mt-3">
         @if(session()->has('success'))
-        <div class="alert alert-success text-white">
+        <div class="alert alert-success text-white bg-purple-500 w-64 p-2 ml-16 text-center self-center rounded-lg">
             {{ session('success') }}
         </div>
         @endif

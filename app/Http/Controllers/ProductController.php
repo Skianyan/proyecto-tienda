@@ -22,7 +22,7 @@ class ProductController extends Controller
 
         $request->session()->put('cart', $cart);
         //dd($request->session()->get('cart'));
-        return redirect()->route('product.index')->with('success', 'Product added successfully.');
+        return redirect()->route('product.index')->with('success', 'Producto agregado.');
     }
 
     public function getCart() {
@@ -95,7 +95,7 @@ class ProductController extends Controller
             ]);
         }
 
-        return redirect()->route('product.index')->with('success', 'Product created successfully.');
+        return redirect()->route('product.index')->with('success', 'Producto creado.');
     }
 
     public function edit(Product $product){
@@ -112,10 +112,10 @@ class ProductController extends Controller
 
         $product ->update($data);
 
-        return redirect(route('product.index'))->with('success','Product updated successfully');
+        return redirect(route('product.index'))->with('success','Producto Modificado');
     }
     public function destroy(Product $product){
         $product->delete();
-        return redirect(route('product.index'))->with('success','Product deleted successfully');
+        return redirect(route('product.index'))->with('success','Producto Borrado');
     }
 }

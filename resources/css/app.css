@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* styles.css */
+.success-message {
+    margin-top: 20px;
+
+    /* Add more styles as needed */
+}
