@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Laravel Shopping Cart
+    Shopping Cart
 @endsection
 
 @section('content')
@@ -16,10 +16,10 @@
                     @foreach($products as $product)
                         <li class="list-group-item" style="display: flex">
                             <img style="width: 300px; height:auto" src="{{ asset('images/' . $product['item']['image']) }}" />
-                            <div style="align-self: center; margin-left: 10px">
-                                <span class="badge">{{$product['qty']}}</span>
-                                <strong>{{ $product['item']['name']}}</strong>
-                                <span class="label label-success">{{$product['price']}}</span>
+                            <div style="padding:10px; margin-left: 10px; display:flex; flex-direction:column; gap: 5px">
+                                <strong style="font-size: 18px">{{ $product['item']['name']}}</strong>
+                                <span class="badge">Quantity: {{$product['qty']}}</span>
+                                <span class="label label-success">${{$product['price']}} Pesos</span>
                                 <div class="btn-group">
                                     <button class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
                                     <ul class="dropdown-menu">
@@ -40,13 +40,13 @@
         </div>
         <hr>
         <div class="row">
-            <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3" style="margin-bottom: 20px">
                 <button type="button" class="btn btn-success">Checkout</button>
             </div>
         </div>
     @else
     <div class="navbar">
-        <a class="navbar-brand" href="{{ url('/product') }}">Dashboard</a>
+        <a class="navbar-brand" href="{{ url('/product') }}">To Products</a>
     </div>
         <div class="row">
             <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
